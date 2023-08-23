@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [E-Commerce](https://www.youtube.com/watch?v=5miHyP6lExg&t=417s) project based on [Code with Antonio](https://www.youtube.com/@codewithantonio) Youtube channel.
 
-## Getting Started
+## Installation
 
-First, run the development server:
+Create a project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+npx create-next-app@latest ecommerce-admin --typescript --tailwind --eslint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the [shadcn-ui](https://ui.shadcn.com/docs/installation/next) init command to setup the project
+```
+npx shadcn-ui@latest init
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install [Clerk](https://clerk.com/docs/quickstarts/nextjs) for authentification
+```
+npm install @clerk/nextjs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install [Prisma](https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases-typescript-mysql)
+```
+npm i -D prisma
+npm i @prisma/client
+npx prisma init
+```
 
-## Learn More
+Create database with [PlanetScale](https://planetscale.com/docs/prisma/prisma-quickstart)
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
+Edit `app/global.css`, add...
+```
+html,
+body,
+:root{
+  height: 100%;
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+File structure
+```
+|--app
+   |--(auth)
+   |  |--(routes)
+   |  |  |--sign-in
+   |  |  |  |--[[...sign-in]]
+   |  |  |     |--page.tsx
+   |  |  |--sign-up
+   |  |     |--[[...sign-up]]
+   |  |        |--page.tsx
+   |  |--layout.tsx
+   |--(root)
+      |--page.tsx
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Add `.env` file
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY={{pub_key}}
+CLERK_SECRET_KEY={{secret}}
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Edit the `.gitignore` file
+```
+.env
+```
